@@ -9,23 +9,17 @@ Admin Side:
 Manager les registres de livres
 Manager les enregistrements d'utilisateurs
 géréer les demandes des livres (sous numéro)
-les livres sorties(+un rappel du durée a ne pas depasser) et retournés
-Manager les types de livres
-Manager Les ranges des livres 
-voir les demandes les résumés et les ratt
+les livres sorties(+un rappel du durée a ne pas depasser) et retournés 
+voir les demandes les résumés 
 Login Page
-Change Password
+
 
 User Side:
 
 user Login Page (session qui se ferme aprés 24h et cookies)
-naviguer et chercher les livres disponibles (et demander)
-Manager le  Profile(username,photo..)
-rating book
+naviguer et chercher les livres  (et demander)
 rediger un resumé sur le livre
-proposer d'autres titres a aporter 
-"ailleurs": un badge pour le reader of the month
-un badge punition pour ceux qui rendent le livre aprés le délai 
+
 			technologies :
 
 		back-end Side=>
