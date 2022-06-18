@@ -8,14 +8,14 @@
   </div>
 </div>
 <div class="card g-col-6 g-col-md-4" style="width: 18rem; background-color:#0078FF">
-  <i class="bi bi-book-half"  class="card-img-top" alt="..."></i>
+<i class="bi bi-people-fill"></i>
   <div class="card-body">
     <p class="card-text text-dark fw-bold">Totale des utilisateurs</p>
     <span class="fw-bold fs-5"><?php echo $data['countUser'] ?></span>
   </div>
 </div>
 <div class="card g-col-6 g-col-md-4" style="width: 18rem; background-color:#7B2CFF">
-<i class="bi bi-book" class="card-img-top" alt="..."></i>
+<i class="bi bi-archive-fill"></i>
   <div class="card-body">
     <p class="card-text text-dark fw-bold">Totale des demandes</p>
     <span class="fw-bold fs-5"><?php echo $data['countDemande'] ?></span>

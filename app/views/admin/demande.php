@@ -10,27 +10,27 @@
   <thead>
     <tr>
       <th scope="col" ></th>
-      <th scope="col" class="text-muted">Nom et Prénom</th>
+      <th scope="col" class="text-muted">Nom d'utilisateur</th>
       <th scope="col" class="text-muted">Livre demandé</th>
-      <th scope="col" class="text-muted">Date voulu</th>
-      <th scope="col" class="text-muted">Date retour</th>
-      <th> </th>
-      <th> </th>
+      <th scope="col" class="text-muted">Date</th>
+      <th scope="col" class="text-muted">  </th>
+      <th scope="col" class="text-muted">  </th>
+
     </tr>
   </thead>
   <tbody>
-  <tr class="">
-      <th scope="row">  <img class="rounded-circle" src="./assets/WhatsApp Image 2022-04-23 at 13.59.58.jpeg" style="width:30px;height:30px;" alt="image youcode"> </th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>2/10</td>
-      <td>10/10</td>
-      <th> <button type="button" class="btn btn-primary text-white px-1 px-md-3 rounded-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Aprouver </button>
-      </th>
-      <th>
-      <button type="button" class="btn btn-primary text-white px-1 px-md-3 rounded-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Refuser </button>
-      </th>
-    </tr>
+  <?php $i = 0;
+            foreach ($data['demande'] as $demande) : ?>
+                <tr>
+                    <td> </td>
+                    <td class="title"><?= $demande->nomcomplete; ?></td>
+                    <td><?= $demande->titre; ?></td>
+                    <td><?= $demande->datedemande; ?></td>
+                    <td><form method="POST" action="<?php echo URLROOT; ?>/Demandes/accepter"><input name="id" type="hidden" value="<?= $demande->id; ?>" /><input type="submit" class="btn btn-sm btn-primary" value="Aprouver"></form></td>
+                    <td><form method="POST" action="<?php echo URLROOT; ?>/Demandes/refuser"><input name="id" type="hidden" value="<?= $demande->id; ?>" /><input type="submit" class="btn btn-sm btn-primary" value="Refuser"></form></td>
+
+                </tr>
+            <?php endforeach; ?>
   </tbody>
 </table>
 <?php require APPROOT . '/views/inc/footer.php'; ?> 

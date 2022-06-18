@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
+<div class="mb-3  d-flex align-items-center  " style="margin-top:150px;">
 <div class="m-auto col-6">
-  
-<a href="<?php echo URLROOT; ?>/livres/" class="btn btn-light"><i class="fa fa-backward"></i> Back</a>
+<a href="<?php echo URLROOT; ?>/livres/index" class="btn btn-light"><i class="fa fa-backward"></i> Back</a>
 <form action="<?php echo URLROOT; ?>/livres/<?= $data['action'] == 'add' ? 'add' : 'edit/' . $data['body']['id'] ?>" method="POST" enctype="multipart/form-data">
 <div class="col-8 text-center">
     <label for="img" class="form-label-sm form-label">Selectionne une image</label>
@@ -25,9 +25,9 @@
     <span class="invalid-feedback"><?php echo $data['ecrivain_err']; ?></span>
 
   </div>
-  <input type="submit" class="btn btn-primary">
+  <input type="submit" class="btn btn-primary   w-100">
 </form>
-
+</div>
 </div>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

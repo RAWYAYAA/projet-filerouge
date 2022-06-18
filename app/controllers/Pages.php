@@ -9,10 +9,13 @@
       $countLivre = $this->livreModel->countLivre();
       $countUser = $this->livreModel->countUser();
       $countDemande = $this->livreModel->countDemande();
+      $countiddemande= $this->livreModel->getnotification();
+
       $data = [
         'countLivre' => count($countLivre),
         'countUser' => count($countUser),
-        'countDemande' => count($countDemande)
+        'countDemande' => count($countDemande),
+        'countiddemande' => count($countiddemande)
       ];
       // print_r($data);
       $this->view('admin/index', $data);
@@ -28,41 +31,24 @@
       
     //   $this->view('pages/signup');
     // }
-    public function crudusers(){
-
-      $this->view('admin/cruduser');
-    }
-    public function demande(){
-
-      $this->view('admin/demande');
-    }
-    public function demandes(){
-
-      $this->view('staff/demande');
-    }
-    public function crudlivres(){
-
-      $this->view('pages/crudlivres');
-    }
-    public function landinguser(){
-
-      $this->view('pages/landinguser');
-    }
-    public function demander(){
-
-      $this->view('staff/demander');
-    }
+    
     // public function demande(){
 
-    //   $this->view('staff/demander');
+    //   $this->view('admin/demande');
     // }
-    public function voirdetails(){
-
-      $this->view('pages/voirdetails');
+    
+    public function crudlivres(){
+      $livres=$this->livreModel->getLivres();
+      $countiddemande= $this->livreModel->getnotification();
+      $data=[
+        'livres'=>$livres,
+        'countiddemande'=>count($countiddemande)
+      ];
+      $this->view('livres/index',$data);
     }
-    public function rechercher(){
-
-      $this->view('pages/rechercher');
+   
+    public function error(){
+      $this->view('eror');
     }
 
   }

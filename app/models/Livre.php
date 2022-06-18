@@ -80,5 +80,11 @@ class Livre{
         return  $this->db->resultSet();
 
      }
+     public function getnotification(){
+        $this->db->query("SELECT * FROM demande d WHERE  statu_id =3;");
+        $results=$this->db->resultSet();
+        return $results;
+      }
+        
     
 }

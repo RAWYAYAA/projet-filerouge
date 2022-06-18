@@ -148,7 +148,7 @@
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_nomcomplete'] = $user->nomcomplete;
       $_SESSION['role'] = $user->role;
-      redirect('pages/posts');
+      redirect('pages/index');
     }
 
     public function logout(){
@@ -161,6 +161,20 @@
     }
     public function isLoggedIn(){
       if(isset($_SESSION['user_id'])){
+        return true ;
+      }else{
+        return false;
+      }
+    }
+    public function isAdmin(){
+      if($_SESSION['role'] == 1){
+        return true ;
+      }else{
+        return false;
+      }
+    }
+    public function isStaff(){
+      if($_SESSION['role'] == 2){
         return true ;
       }else{
         return false;
