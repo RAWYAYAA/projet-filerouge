@@ -70,5 +70,42 @@
         return $results;
       }
         
+    //admin table proposition
+    public function getprop(){
+        $this->db->query("SELECT * FROM `proposition` ");
+        $results=$this->db->resultSet();
+        return $results;
     }
+    //staff prop
+    public function addproposition($data){
+        $this->db->query("INSERT INTO proposition (id, titredelivre, ecrivain ) VALUES (:id,:titredelivre,:ecrivain) ");
+            $this->db->bind(':titredelivre', $data['titredelivre']);
+            $this->db->bind(':ecrivain',$data['ecrivain']);
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+
+    }
+    //admin resume
+    public function getresume(){
+        $this->db->query("SELECT * FROM `resume` ");
+        $results=$this->db->resultSet();
+        return $results;
+    }
+    //staf resume
+    public function addresume($data){
+        $this->db->query("INSERT INTO resume (id, titredelivre, ecrivain ) VALUES (:id,:titredelivre,:ecrivain) ");
+            $this->db->bind(':titredelivre', $data['titredelivre']);
+            $this->db->bind(':ecrivain',$data['ecrivain']);
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+
+    }
+}
+
 ?>

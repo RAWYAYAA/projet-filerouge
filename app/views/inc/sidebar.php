@@ -38,6 +38,22 @@
                       <a href="<?php echo URLROOT; ?>/demandes/satffdemande">Demandes</a>
                     <?php endif ;?>
                 </li>
+                <li class="active d-flex align-items-center">
+                <i class="bi bi-arrow-right-square-fill"></i>
+                    <?php if($_SESSION['role'] == '1'): ?>
+                      <a href="<?php echo URLROOT; ?>/demandes/adminprop">Propositions</a>
+                    <?php else: ?>
+                      <a href="<?php echo URLROOT; ?>/demandes/getproposition">Propositions</a>
+                    <?php endif ;?>
+                </li>
+                <li class="active d-flex align-items-center">
+                <i class="bi bi-file-earmark-medical-fill"></i>
+                    <?php if($_SESSION['role'] == '1'): ?>
+                      <a href="<?php echo URLROOT; ?>/demandes/resume">Résumés</a>
+                    <?php else: ?>
+                      <a href="<?php echo URLROOT; ?>/demandes/resumeaffichage">Résumés</a>
+                    <?php endif ;?>
+                </li>
                 <li class="active d-flex align-items-center mt-5">
                 <i class="bi bi-box-arrow-left"></i>
                     <a href="<?php echo URLROOT; ?>/users/login">logout</a>
@@ -66,7 +82,6 @@
 
               <div class=" d-flex me-3">
               <?php if($_SESSION['role'] == '1'): ?>
-                <!-- <span class="ms-2" style="font-size: 20px;"><a href="<?php URLROOT  ?>/demandes/demandeaffichage"><i class=" bi bi-bell-fill"></i></a></span> -->
                 <span class="ms-2 position-relative" style="font-size: 20px;"><a href="<?php echo URLROOT; ?>/demandes/demandeaffichage"><i class=" bi bi-bell-fill"></i></a></span>
                 <span class="position-absolute translate-middle badge border border-light rounded-circle bg-danger" style="padding: 2px;"><?php echo $data['countiddemande']?></span>
                 <?php else: ?>
