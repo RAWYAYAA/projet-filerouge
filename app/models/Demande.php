@@ -15,7 +15,7 @@
         
 
         public function getDemandeById($id){
-            $this->db->query("SELECT l.titre,l.image,s.nom FROM demande d,livres l,status s,users u WHERE u.id = user_id and u.id= 2 and statu_id =s.id and livre_id = l.id");
+            $this->db->query("SELECT l.titre,l.image,s.nom FROM demande d,livres l,status s,users u WHERE d.user_id = :id and u.id= 2 and statu_id =s.id and livre_id = l.id");
             $this->db->bind(':id', $id);
             return $this->db->resultSet();
         }
@@ -37,7 +37,7 @@
             return $this->db->resultSet();
         }
         public function getDemandestaf($id){
-            $this->db->query("SELECT d.id,l.titre,d.datedemande,s.nom,u.nomcomplete,statu_id  FROM demande d,livres l,status s,users u WHERE u.id = user_id and livre_id = l.id and statu_id = s.id;");
+            $this->db->query("SELECT d.id,l.titre,d.datedemande,s.nom,u.nomcomplete,statu_id FROM demande d,livres l,status s,users u WHERE d.user_id = u.id and u.id = :id and livre_id = l.id and d.statu_id = s.id");
             $this->db->bind(':id', $id);
             return $this->db->resultSet();
         }
@@ -96,9 +96,10 @@
     }
     //staf resume
     public function addresume($data){
-        $this->db->query("INSERT INTO resume (id, titredelivre, ecrivain ) VALUES (:id,:titredelivre,:ecrivain) ");
-            $this->db->bind(':titredelivre', $data['titredelivre']);
-            $this->db->bind(':ecrivain',$data['ecrivain']);
+        $this->db->query("INSERT INTO resume (titrelivre, resume , user_id ) VALUES (:titrelivre,:resume,:user_id) ");
+            $this->db->bind(':titrelivre', $data['titrelivre']);
+            $this->db->bind(':resume',$data['resume']);
+            $this->db->bind(':user_id',$data['user_id']);
             if($this->db->execute()){
                 return true;
             }else{

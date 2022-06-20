@@ -64,19 +64,22 @@
           'demande'=>$demande];
           $this->view('staff/statudemande',$data);
     }
-    public function notifications(){
-      $idUser = $_SESSION['user_id'];
-      $demande = $this->demandeModel-> getnotification($idUser);
-        $data=[
-          'demande'=>$demande];
-          $this->view('admin/',$data);
+    // public function notifications(){
+    //   $idUser = $_SESSION['user_id'];
+    //   $demande = $this->demandeModel-> getnotification($idUser);
+    //     $data=[
+    //       'demande'=>$demande];
+    //       $this->view('admin/',$data);
 
-    }
+    // }
     //admin
     public function adminprop(){
       $idUser = $_SESSION['user_id'];
       $proposition = $this->demandeModel->  getprop($idUser);
+      $countiddemande= $this->demandeModel->getnotification();
         $data=[
+          'countiddemande'=>count($countiddemande),
+
           'proposition'=>$proposition];
           $this->view('admin/proposition',$data);
     }
@@ -95,15 +98,17 @@
     //admin resume
     public function resume(){
       $idUser = $_SESSION['user_id'];
+      $countiddemande= $this->demandeModel->getnotification();
       $resume = $this->demandeModel->  getresume($idUser);
         $data=[
+          'countiddemande'=>count($countiddemande),
           'resume'=>$resume];
           $this->view('admin/resume',$data);
     }
     //staff resume
     public function resumeaffichage(){
       $idUser = $_SESSION['user_id'];
-      $resume = $this->demandeModel->  getresume($idUser);
+      $resume = $this->demandeModel->getresume($idUser);
         $data=[
           'resume'=>$resume];
           $this->view('staff/resume',$data);
@@ -118,11 +123,10 @@
             'titre_err'  => '',
             'resume_err' => '',
         ];
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' &&  $_SESSION['user_id']==2) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Sanitize post array
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
-                'type'         => trim($_POST['type']),
                 'titrelivre'          => trim($_POST['titrelivre']),
                 'resume'          => trim($_POST['resume']),
                 'user_id'       => $_SESSION['user_id'],
@@ -142,18 +146,16 @@
             if ( empty($data['resume_err']) && empty($data['titre_err'])) {
                 if ($this->demandeModel->addresume($data)) {
                     redirect('demandes/resumeaffichage');
+                    // echo'yeeeeeeeeeeeeees';
                 } else {
                     die('Something went wrong');
                 }
             } else {
                 //load view with errors
-                $data['action'] = 'add';
-
-                $this->view('staff/addresume', $data);
+                $this->view('staff/addresumes', $data);
             }
         } else {
             $data = [
-                'action' => 'add',
                 'titrelivre' => '',
                 'resume'  => '',
                 'body' => $body,
@@ -166,7 +168,7 @@
     //get proposition staff
     public function getproposition(){
       $idUser = $_SESSION['user_id'];
-      $proposition = $this->demandeModel->  getprop($idUser);
+      $proposition = $this->demandeModel-> getprop($idUser);
         $data=[
           'proposition'=>$proposition];
           $this->view('staff/proposition',$data);

@@ -85,7 +85,7 @@ class Livres extends Controller
             if (empty($data['title_err']) && empty($data['type_err']) && empty($data['ecrivain_err']) && empty($data['image_err']) && empty($data['image_err'])) {
                 if ($this->livreModel->addLivres($data)) {
 
-                    redirect('livres');
+                    redirect('pages/crudlivres');
                 } else {
                     die('Something went wrong');
                 }
@@ -190,7 +190,7 @@ class Livres extends Controller
                 if ($this->livreModel->editLivres($data)) {
 
 
-                    redirect('livres');
+                    redirect('pages/crudlivres');
                 } else {
                     die('Something went wrong');
                 }
@@ -209,7 +209,7 @@ class Livres extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if ($this->livreModel->deleteLivre($id)) {
 
-                redirect('livres');
+                redirect('pages/crudlivres');
             } else {
                 die('Something went wrong');
             }

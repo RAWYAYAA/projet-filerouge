@@ -16,7 +16,7 @@
                 <li class="active d-flex align-items-center ">
                 <i class="bi bi-house-door-fill"></i>
                 <?php if($_SESSION['role'] == '1'): ?>
-                    <a href="<?php echo URLROOT; ?>/pages/index"  >Home</a>
+                    <a href="<?php echo URLROOT; ?>/pages/index" >Home</a>
                     <?php else: ?>
                     <a href="<?php echo URLROOT; ?>/pages/index"  >Home</a>
                     <?php endif ;?>

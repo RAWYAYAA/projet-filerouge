@@ -27,16 +27,6 @@
       ];
       $this->view('staff/index',$data);
     }
-    // public function signup(){
-      
-    //   $this->view('pages/signup');
-    // }
-    
-    // public function demande(){
-
-    //   $this->view('admin/demande');
-    // }
-    
     public function crudlivres(){
       $livres=$this->livreModel->getLivres();
       $countiddemande= $this->livreModel->getnotification();
