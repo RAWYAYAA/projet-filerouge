@@ -6,7 +6,7 @@
       
       <img src="data:image/*;charset=utf8;base64,<?php echo base64_encode($livre->image); ?>" class="card-img-top"  alt="..." >
       <div class="card-body">
-        <h5 class="card-title"><?php echo $livre->titre ?></h5>
+        <h5 class="card-title title"><?php echo $livre->titre ?></h5>
         <p class="card-text"><?php echo $livre->type ?></p>
         <p class="card-text"><?php echo $livre->ecrivain ?></p>
         <form action="<?php echo URLROOT; ?>/Demandes/addDemande" method="POST">
@@ -17,4 +17,20 @@
     </div>
   <?php endforeach; ?>
 </div>
+<script>
+    let searchInput = document.getElementById('search');
+    let titles = document.querySelectorAll('.title')
+
+    searchInput.addEventListener('input', () => {
+        let searchValue = searchInput.value.toLowerCase();
+        titles.forEach(title => {
+            let titleValue = title.textContent.toLowerCase();
+            if (titleValue.startsWith(searchValue)) {
+                title.parentElement.parentElement.style.display = 'table-row';
+            } else {
+                title.parentElement.parentElement.style.display = 'none';
+            }
+        })
+    })
+</script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

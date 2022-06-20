@@ -88,6 +88,7 @@
             }
 
     }
+    
     //admin resume
     public function getresume(){
         $this->db->query("SELECT * FROM `resume` ");

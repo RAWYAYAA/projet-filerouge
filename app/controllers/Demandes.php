@@ -114,6 +114,7 @@
           $this->view('staff/resume',$data);
     }
     //staff resume add
+    
     public function addresumes()
     {
         $body = [
@@ -165,6 +166,57 @@
             $this->view('staff/addresume', $data);
         }
     }
+    public function addpropositions()
+    {
+        $body = [
+            'id' => '',
+            'titredelivre' => '',
+            'ecrivain' => '',
+            'titre_err'  => '',
+            'ecrivain_err' => '',
+        ];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            //Sanitize post array
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $data = [
+                'titredelivre'          => trim($_POST['titredelivre']),
+                'ecrivain'          => trim($_POST['ecrivain']),
+                'user_id'       => $_SESSION['user_id'],
+                'titre_err'      => '',
+                'ecrivain_err' => '',
+            ];
+            //validate title
+            if (empty($data['titredelivre'])) {
+                $data['titre_err'] = 'Please enter title';
+            }
+
+            //validate body
+            if (empty($data['ecrivain'])) {
+                $data['ecrivain_err'] = 'Please enter resume';
+            }
+            //check if errors are present
+            if ( empty($data['ecrivain_err']) && empty($data['titre_err'])) {
+                if ($this->demandeModel->addproposition($data)) {
+                    redirect('demandes/proposer');
+                    // echo'yeeeeeeeeeeeeees';
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                //load view with errors
+                $this->view('staff/proposition', $data);
+            }
+        } else {
+            $data = [
+                'titredelivre' => '',
+                'ecrivain'  => '',
+                'body' => $body,
+
+            ];
+
+            $this->view('staff/proposition', $data);
+        }
+    }
     //get proposition staff
     public function getproposition(){
       $idUser = $_SESSION['user_id'];
@@ -173,4 +225,5 @@
           'proposition'=>$proposition];
           $this->view('staff/proposition',$data);
     }
+
   }
