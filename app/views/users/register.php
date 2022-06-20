@@ -13,17 +13,12 @@
                     }
                 ?> -->
                 </div>
-                <form class="row g-3" method="POST" action="<?php echo URLROOT; ?>/users/register" >  
+                <form class="row g-3" method="POST" name="myForm" onsubmit = "return(validate());"  action="<?php echo URLROOT; ?>/users/register" >  
                     <div class="col-md-12 ">
                         <label class="form-label text-muted">Nom complète  <sup class="text-danger">*</sup></label>
                         <input type="text" class="form-control shadow-none  <?php echo(!empty($data['nomcomplete_err'])) ? 'is-invalid' : ''; ?> " value="<?php  echo $data['nomcomplete']?>" name="nomcomplete" id="nomcomplete" placeholder="Enter your Full Name" >
                         <span class="invalid-feedback"><?php echo $data['nomcomplete_err']; ?></span>
                     </div>
-                    <!-- <div class="col-md-6">
-                        <label class="form-label text-muted">Last Name</label>
-                        <input type="text" class="form-control shadow-none " name="lastName" id="lastName" placeholder="Enter your Last Name" >
-                        <div id="message" class="d-none"><span class="text-danger mx-3 "><i class="bi bi-exclamation-circle-fill "></i> Last Name obligatoir valid</span></div>
-                    </div> -->
                     <div class="col-md-12">
                         <label class="form-label text-muted">E-mail <sup class="text-danger">*</sup> </label>
                         <input type="text" class="form-control shadow-none  <?php echo(!empty($data['email_err'])) ? 'is-invalid' : ''; ?> " value="<?php  echo $data['email']?>" name="email" id="email" placeholder="Enter your Email" >
@@ -69,14 +64,48 @@
                     </div>
                     <p class="text-center text-muted">Je suis déjà membre! <a class="text-primary cursor-pointer text-decoration-none" href="<?php echo URLROOT  ?>/users/login"> Sign in</a></p>
                 </form>
-                <!-- <?php
-                    require_once 'include.php' ;
-                    if($_SERVER['REQUEST_METHOD']==='POST'){
-                        // addUser($_POST);
-                    }
-                        
-                ?> -->
             </div>
-
     </main>
+    <script>
+    var x = /^[0-9]{10,10}$/
+var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+function validate(e) {
+      
+    if( document.myForm.nomcomplete.value == "" ) {
+       alert( "Please enter your name!" );
+       document.myForm.nom.focus() ;
+       e.peventDefault();
+    }
+     if( !x.test(document.myForm.phone.value) || document.myForm.phone.value=="" ) {
+        alert( "Please enter a phone!" );
+        document.myForm.phone.focus() ;
+        e.peventDefault();
+     }
+    if( !re.test(document.myForm.email.value) ||document.myForm.email.value == "" ) {
+       alert( "Please provide your Email!" );
+       document.myForm.email.focus() ;
+       e.peventDefault();
+    }
+    if( document.myForm.password.value == "" || document.myForm.password.value.length < 8 ) {
+       alert( "Enter a valid password" );
+       document.myForm.password.focus() ;
+       e.peventDefault();
+    }
+    if(document.myForm.confirm_password.value == "" ){
+        alert( "Enter a valid password" );
+        document.myForm.confirm_password.focus() ;
+        e.peventDefault();
+    }
+    if( !(document.myForm.confirm_password.value == document.myForm.password.value) ){
+        alert( "don't match" );
+        document.myForm.confirm_password.focus() ;
+        e.peventDefault();
+    }
+    if( document.myForm.salle.value == "" ) {
+        alert( "Please enter your salle!" );
+        document.myForm.salle.focus() ;
+        e.peventDefault();
+     }
+ }
+ </script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

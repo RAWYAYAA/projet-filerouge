@@ -28,6 +28,10 @@
       $this->view('staff/index',$data);
     }
     public function crudlivres(){
+      if($_SESSION['role'] !== 1){
+        throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+        die;
+      }
       $livres=$this->livreModel->getLivres();
       $countiddemande= $this->livreModel->getnotification();
       $data=[

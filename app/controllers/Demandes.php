@@ -64,15 +64,6 @@
           'demande'=>$demande];
           $this->view('staff/statudemande',$data);
     }
-    // public function notifications(){
-    //   $idUser = $_SESSION['user_id'];
-    //   $demande = $this->demandeModel-> getnotification($idUser);
-    //     $data=[
-    //       'demande'=>$demande];
-    //       $this->view('admin/',$data);
-
-    // }
-    //admin
     public function adminprop(){
       $idUser = $_SESSION['user_id'];
       $proposition = $this->demandeModel->  getprop($idUser);
@@ -84,17 +75,17 @@
           $this->view('admin/proposition',$data);
     }
     //staff
-    public function proposer(){
-      if ($_SERVER['REQUEST_METHOD']== 'POST'){
-        $_POST=filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $titredelivre = $_POST['titredelivre'];
-        $idUser = $_SESSION['user_id'];
-        $ecrivain=$_POST['ecrivain'];
-        $this->demandeModel->addproposition($titredelivre,$idUser,$ecrivain);
-        // $this->view('staff/proposition');
-        header('Location: '.URLROOT.'staff/proposition');
-      }
-    }
+    // public function proposer(){
+    //   if ($_SERVER['REQUEST_METHOD']== 'POST'){
+    //     $_POST=filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    //     $titredelivre = $_POST['titredelivre'];
+    //     $idUser = $_SESSION['user_id'];
+    //     $ecrivain=$_POST['ecrivain'];
+    //     $this->demandeModel->addproposition($titredelivre,$idUser,$ecrivain);
+    //     $this->view('staff/proposition');
+    //     // header('Location: '.URLROOT.'staff/proposition');
+    //   }
+    // }
     //admin resume
     public function resume(){
       $idUser = $_SESSION['user_id'];
