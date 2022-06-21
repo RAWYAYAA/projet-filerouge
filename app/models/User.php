@@ -59,19 +59,19 @@
     }
 
     // Find user by Id
-    public function findUserById($id){
-      $this->db->query('SELECT * FROM users WHERE id = :id');
-      // Bind value
-      $this->db->bind(':id', $id);
+    // public function findUserById($id){
+    //   $this->db->query('SELECT * FROM users WHERE id = :id');
+    //   // Bind value
+    //   $this->db->bind(':id', $id);
 
-      $row = $this->db->single();
+    //   $row = $this->db->single();
 
-      // Check row
-      if($this->db->rowCount() > 0){
-        return true;
-      } else {
-        return false;
-      }
-    }
+    //   // Check row
+    //   if($this->db->rowCount() > 0){
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
     
   }

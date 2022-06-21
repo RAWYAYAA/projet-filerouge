@@ -2,7 +2,7 @@
   class Pages extends Controller {
     public function __construct(){
       $this->livreModel = $this->model('Livre');
-
+      $this->demandeModel = $this->model('Demande');
     }
     
     public function index(){
@@ -26,8 +26,11 @@
         die;
       }
       $livres=$this->livreModel->getLivres();
+      $idUser = $_SESSION['user_id'];
+      $demande = $this->demandeModel->livreout();
       $data=[
-        'livres'=>$livres
+        'livres'=>$livres,
+        'demande'=>$demande,
       ];
       $this->view('staff/index',$data);
     }
@@ -47,6 +50,9 @@
    
     public function error(){
       $this->view('eror');
+    }
+    public function statulivre(){
+      $this->view('staff/statulivre');
     }
 
   }

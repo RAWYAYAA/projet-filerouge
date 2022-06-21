@@ -198,10 +198,8 @@
     public function isout(){
       $idUser = $_SESSION['user_id'];
       $demande = $this->demandeModel->livreout($idUser);
-      print_r($demande);
-      die;
         $data=[
-          'demande'=>$demande,
+          'demande'=> $demande
         ];
           $this->view('staff/index',$data);
     }

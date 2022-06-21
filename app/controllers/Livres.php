@@ -9,7 +9,7 @@ class Livres extends Controller
         }
 
         $this->livreModel = $this->model('Livre');
-        // $this->userModel = $this->model('User');
+        $this->userModel = $this->model('User');
     }
 
     public function index()
@@ -18,30 +18,20 @@ class Livres extends Controller
         $data = [
             'livres' => $livres,
         ];
-        print_r($data);
-        die;
+        // print_r($data);
+        // die;
 
         $this->view('livres/index', $data);
     }
 
     public function add()
     {
-        $body = [
-            'id' => '',
-            'image' => '',
-            'titre' => '',
-            'type' => '',
-            'ecrivain' => '',
-            'type_err'     => '',
-            'titre_err'      => '',
-            'ecrivain_err' => '',
-            'image_err' => '',
-        ];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Sanitize post array
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
+                'id' =>'',
                 'image' => '',
                 'type'         => trim($_POST['type']),
                 'titre'          => trim($_POST['titre']),
@@ -104,7 +94,6 @@ class Livres extends Controller
                 'titre' => '',
                 'type'  => '',
                 'ecrivain'  => '',
-                'body' => $body,
                 'image' => '',
 
             ];
@@ -116,15 +105,6 @@ class Livres extends Controller
     {
         // Get data livre
         $livreId = $this->livreModel->getLivreById($id);
-        // init body
-        $body = [
-            'id' => $livreId->id,
-            'titre' => $livreId->titre,
-            'type' => $livreId->type,
-            'ecrivain' => $livreId->ecrivain,
-            'image' => $livreId->image,
-        ];
-
         // get existing post from model
         $livre = $this->livreModel->getLivreById($id);
         //check for owner
@@ -136,7 +116,6 @@ class Livres extends Controller
             'titre' => $livre->titre,
             'type'  => $livre->type,
             'ecrivain'  => $livre->ecrivain,
-            'body' => $body,
         ];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Sanitize post array

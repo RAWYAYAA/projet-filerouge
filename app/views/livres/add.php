@@ -2,7 +2,7 @@
 <div class="mb-3  d-flex align-items-center  " style="margin-top:150px;">
 <div class="m-auto col-6">
 <a href="<?php echo URLROOT; ?>/livres/index" class="btn btn-light"><i class="fa fa-backward"></i> Back</a>
-<form action="<?php echo URLROOT; ?>/livres/<?= $data['action'] == 'add' ? 'add' : 'edit/' . $data['body']['id'] ?>" method="POST" enctype="multipart/form-data">
+<form action="<?php echo URLROOT; ?>/livres/<?= $data['action'] == 'add' ? 'add' : 'edit/' . $data['id'] ?>" method="POST" enctype="multipart/form-data">
 <div class="col-8 text-center">
     <label for="img" class="form-label-sm form-label">Selectionne une image</label>
     <input class="form-control form-control-sm img_input <?= (!empty($data['image_err'])) ? 'is-invalid' : ''; ?>"

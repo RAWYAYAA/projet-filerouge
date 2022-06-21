@@ -166,18 +166,18 @@
         return false;
       }
     }
-    public function isAdmin(){
-      if($_SESSION['role'] == 1){
-        return true ;
-      }else{
-        return false;
-      }
-    }
-    public function isStaff(){
-      if($_SESSION['role'] == 2){
-        return true ;
-      }else{
-        return false;
-      }
-    }
+    // public function isAdmin(){
+    //   if($_SESSION['role'] == 1){
+    //     return true ;
+    //   }else{
+    //     return false;
+    //   }
+    // }
+    // public function isStaff(){
+    //   if($_SESSION['role'] == 2){
+    //     return true ;
+    //   }else{
+    //     return false;
+    //   }
+    // }
   }
