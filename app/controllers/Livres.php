@@ -18,6 +18,8 @@ class Livres extends Controller
         $data = [
             'livres' => $livres,
         ];
+        print_r($data);
+        die;
 
         $this->view('livres/index', $data);
     }

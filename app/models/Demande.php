@@ -106,7 +106,12 @@
             }else{
                 return false;
             }
-
+    }
+    //admin table livre
+    public function livreout(){
+        $this->db->query("SELECT d.id,l.titre,s.nom,statu_id FROM demande d,livres l,status s WHERE statu_id= s.id and livre_id = l.id and d.statu_id = 1;  ");
+        $results=$this->db->resultSet();
+        return $results;
     }
 }
 

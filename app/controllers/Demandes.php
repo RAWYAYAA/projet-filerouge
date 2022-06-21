@@ -16,6 +16,10 @@
       }
       
     public function getDemande(){
+      if($_SESSION['role'] == 1){
+        throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+        die;
+      }
       $idUser = $_SESSION['user_id'];
       $demande = $this->demandeModel->getDemandeById($idUser);
         $data=[
@@ -189,6 +193,17 @@
         $data=[
           'proposition'=>$proposition];
           $this->view('staff/proposition',$data);
+    }
+
+    public function isout(){
+      $idUser = $_SESSION['user_id'];
+      $demande = $this->demandeModel->livreout($idUser);
+      print_r($demande);
+      die;
+        $data=[
+          'demande'=>$demande,
+        ];
+          $this->view('staff/index',$data);
     }
 
   }

@@ -21,6 +21,10 @@
       $this->view('admin/index', $data);
     }
     public function indexstaf(){
+      if($_SESSION['role'] == 1){
+        throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+        die;
+      }
       $livres=$this->livreModel->getLivres();
       $data=[
         'livres'=>$livres
@@ -28,7 +32,7 @@
       $this->view('staff/index',$data);
     }
     public function crudlivres(){
-      if($_SESSION['role'] !== 1){
+      if($_SESSION['role'] == 2){
         throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
         die;
       }
