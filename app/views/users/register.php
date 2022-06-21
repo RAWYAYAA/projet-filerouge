@@ -69,7 +69,8 @@
     <script>
     var x = /^[0-9]{10,10}$/
 var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-function validate(e) {
+let check = document.getElementById('singup') ;
+singup.addEventListener("click", function(e) {
       
     if( document.myForm.nomcomplete.value == "" ) {
        alert( "Please enter your name!" );
@@ -106,6 +107,6 @@ function validate(e) {
         document.myForm.salle.focus() ;
         e.peventDefault();
      }
- }
+ });
  </script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

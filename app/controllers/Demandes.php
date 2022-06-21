@@ -74,18 +74,7 @@
           'proposition'=>$proposition];
           $this->view('admin/proposition',$data);
     }
-    //staff
-    // public function proposer(){
-    //   if ($_SERVER['REQUEST_METHOD']== 'POST'){
-    //     $_POST=filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-    //     $titredelivre = $_POST['titredelivre'];
-    //     $idUser = $_SESSION['user_id'];
-    //     $ecrivain=$_POST['ecrivain'];
-    //     $this->demandeModel->addproposition($titredelivre,$idUser,$ecrivain);
-    //     $this->view('staff/proposition');
-    //     // header('Location: '.URLROOT.'staff/proposition');
-    //   }
-    // }
+
     //admin resume
     public function resume(){
       $idUser = $_SESSION['user_id'];
@@ -104,21 +93,16 @@
           'resume'=>$resume];
           $this->view('staff/resume',$data);
     }
+    
     //staff resume add
     
     public function addresumes()
     {
-        $body = [
-            'id' => '',
-            'titrelivre' => '',
-            'resume' => '',
-            'titre_err'  => '',
-            'resume_err' => '',
-        ];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Sanitize post array
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
+              'id' =>'',
                 'titrelivre'          => trim($_POST['titrelivre']),
                 'resume'          => trim($_POST['resume']),
                 'user_id'       => $_SESSION['user_id'],
@@ -150,8 +134,6 @@
             $data = [
                 'titrelivre' => '',
                 'resume'  => '',
-                'body' => $body,
-
             ];
 
             $this->view('staff/addresume', $data);
@@ -159,17 +141,11 @@
     }
     public function addpropositions()
     {
-        $body = [
-            'id' => '',
-            'titredelivre' => '',
-            'ecrivain' => '',
-            'titre_err'  => '',
-            'ecrivain_err' => '',
-        ];
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Sanitize post array
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
+              'id'=>'',
                 'titredelivre'          => trim($_POST['titredelivre']),
                 'ecrivain'          => trim($_POST['ecrivain']),
                 'user_id'       => $_SESSION['user_id'],
@@ -188,24 +164,22 @@
             //check if errors are present
             if ( empty($data['ecrivain_err']) && empty($data['titre_err'])) {
                 if ($this->demandeModel->addproposition($data)) {
-                    redirect('demandes/proposer');
+                    redirect('staff/addprop');
                     // echo'yeeeeeeeeeeeeees';
                 } else {
                     die('Something went wrong');
                 }
             } else {
                 //load view with errors
-                $this->view('staff/proposition', $data);
+                $this->view('staff/addprop', $data);
             }
         } else {
             $data = [
                 'titredelivre' => '',
                 'ecrivain'  => '',
-                'body' => $body,
-
             ];
 
-            $this->view('staff/proposition', $data);
+            $this->view('staff/addprop', $data);
         }
     }
     //get proposition staff
