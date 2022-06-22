@@ -20,7 +20,7 @@
         // Unset 0 Index
         unset($url[0]);
       }else{
-        throw new Exception('Controller not found');
+        echo('Controller not found');
         die;
     }
     }

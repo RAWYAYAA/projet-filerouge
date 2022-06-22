@@ -17,7 +17,7 @@
       
     public function getDemande(){
       if($_SESSION['role'] == 1){
-        throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+        echo('Vous n\'avez pas les droits pour accéder à cette page');
         die;
       }
       $idUser = $_SESSION['user_id'];
@@ -106,7 +106,7 @@
             //Sanitize post array
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
-              'id' =>'',
+                'id' =>'',
                 'titrelivre'          => trim($_POST['titrelivre']),
                 'resume'          => trim($_POST['resume']),
                 'user_id'       => $_SESSION['user_id'],

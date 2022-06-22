@@ -22,7 +22,7 @@
     }
     public function indexstaf(){
       if($_SESSION['role'] == 1){
-        throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+      echo('Vous n\'avez pas les droits pour accéder à cette page');
         die;
       }
       $livres=$this->livreModel->getLivres();
@@ -36,7 +36,7 @@
     }
     public function crudlivres(){
       if($_SESSION['role'] == 2){
-        throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+        echo('Vous n\'avez pas les droits pour accéder à cette page');
         die;
       }
       $livres=$this->livreModel->getLivres();
@@ -51,8 +51,8 @@
     public function error(){
       $this->view('eror');
     }
-    public function statulivre(){
-      $this->view('staff/statulivre');
-    }
+    // public function statulivre(){
+    //   $this->view('staff/statulivre');
+    // }
 
   }

@@ -20,7 +20,6 @@ class Livres extends Controller
         ];
         // print_r($data);
         // die;
-
         $this->view('livres/index', $data);
     }
 

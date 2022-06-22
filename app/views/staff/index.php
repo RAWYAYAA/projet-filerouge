@@ -8,14 +8,15 @@
         <h5 class="card-title title"><?php echo $livre->titre ?></h5>
         <p class="card-text"><?php echo $livre->type ?></p>
         <p class="card-text"><?php echo $livre->ecrivain ?></p>
-        <p class="card-text text-warning"><?php if( $data['demande']->statu_id ==1 ){
+        <p class="card-text text-warning"><?php if( $data['demande']->statu_id != 1 ){
           echo "déjà emprunté";
-        }elseif( $data['demande']->statu_id ==2 ){
-          echo "disponible";
-        } 
+        }
+        // elseif( $data['demande']->statu_id ==2 || $data['demande']->statu_id ==3){
+        //   echo "disponible";
+        // } 
         ?></p>
         <form action="<?php echo URLROOT; ?>/Demandes/addDemande" method="POST">
-          <!-- <input name="idLivre" type="hidden" value="<?php echo $livre->id ?>"> -->
+          <input name="idLivre" type="hidden" value="<?php echo $livre->id ?>">
           <input name="addDemande" type="submit" class="btn btn-primary ml-5 " value="Demander">
         </form>
       </div>
